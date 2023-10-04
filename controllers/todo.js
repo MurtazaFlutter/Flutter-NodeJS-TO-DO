@@ -7,6 +7,7 @@ const todo = new Todo(req.body);
 const savedTodo = await todo.save();
 res.json(savedTodo);
     } catch (error){
-        res.status(500).json({error: "Could not create the Todo"})
+        res.status(500).json({error: "Could not create the Todo" });
+        console.log(error.message);
     }
 }
