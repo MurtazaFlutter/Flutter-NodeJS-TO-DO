@@ -21,3 +21,26 @@ res.json(todos);
         res.status(500).json({error: "Could not retrieve todos."});
     }
 }
+
+exports.getTodoById = async (req, res) => {
+    try{
+        const todo = await Todo.findById(req.params.id);
+        if(!todo) return res.status(404).json({error: 'Todo not found'});
+        res.json(todo);
+
+    }catch (error){
+         res.status(500).json({error: "Could not retrieve todos."});
+    }
+}
+
+// Update a todo by ID
+exports.updateTodo = async (req, res) => {
+    try {
+const updateTodo = await Todo.findByIdAndUpdate(req.params.id, req.body,{ new: true});
+if(!updateTodo) return res.status(404).json({error: "Todo not foubd"});
+res.json(updateTodo);
+    }catch (error){
+         res.status(500).json({error: "Could not retrieve todos."});
+        
+    }
+}
