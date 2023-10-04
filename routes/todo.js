@@ -10,10 +10,13 @@ router.post('/api/todos', todoController.createTodo);
 router.get('/api/getTodos', todoController.getAllTodos);
 
 //update Todos
-router.put('/api/todos/:id', todoController.getTodoById);
+router.put('/api/todos/:id', todoController.updateTodo);
 
 //Get Todo by ID
 router.get('/api/todos/:id', todoController.getTodoById);
+
+//Delete Todo
+router.delete('/api/todos/:id', todoController.deleteTodo);
 
 
 

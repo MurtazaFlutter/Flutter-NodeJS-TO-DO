@@ -44,3 +44,13 @@ res.json(updateTodo);
         
     }
 }
+
+exports.deleteTodo = async (req, res)=> {
+    try {
+const deleteTodo = await Todo.findByIdAndRemove(req.params.id);
+if(!deleteTodo) req.res.status(404).json({error: 'Todo not found'});
+res.json({message: 'Todo Deleted successfully'});
+    }catch (error){
+         res.status(500).json({ error: 'Could not delete the todo.' });
+    }
+}
