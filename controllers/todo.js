@@ -3,7 +3,12 @@ const Todo = require('../models/todo');
 // Create To-do api
 exports.createTodo = async (req, res) => {
     try {
-const todo = new Todo(req.body);
+        const {title, description, isCompleted} = req.body;
+
+        
+const todo = new Todo({
+    title, description, isCompleted,
+});
 const savedTodo = await todo.save();
 res.json(savedTodo);
     } catch (error){
@@ -11,6 +16,8 @@ res.json(savedTodo);
         console.log(error.message);
     }
 }
+
+
 
 // Get all todos 
 exports.getAllTodos = async (req, res) => {
